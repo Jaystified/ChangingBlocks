@@ -41,9 +41,9 @@ func random_moving_block(first_arrow, max_block_size):
             # 次に進む
             while true:
                 var arrow = random_generator.randi_range(0, 3)
-                if arrow != inverse_arrow(before_arrow):
+                if arrow != inverse_arrow(first_arrow):
                     block.append(arrow)
-                    before_arrow = arrow
+#                    before_arrow = arrow
                     break
                     
         else:
