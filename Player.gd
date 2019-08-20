@@ -13,6 +13,9 @@ var now_moving_block
 
 var random_generator = RandomNumberGenerator.new()
 
+var GAME_WINDOW_WIDTH
+var GAME_WINDOW_HEIGHT
+
 func inverse_arrow(arrow):
     if arrow == UP:
         return DOWN
@@ -38,6 +41,7 @@ func random_moving_block(first_arrow, max_block_size):
                 var arrow = random_generator.randi_range(0, 3)
                 if arrow != inverse_arrow(before_arrow):
                     block.append(arrow)
+                    before_arrow = arrow
                     break
                     
         else:
@@ -85,7 +89,7 @@ func get_vector(arrow):
     elif arrow == RIGHT:
         moved_vector = Vector2(1,0)
         
-    moved_vector = moved_vector * 32
+    moved_vector = moved_vector * self.get_parent().BLOCK_SIZE
     return moved_vector
     
     
@@ -105,6 +109,11 @@ func _ready():
     
     print("moving_block=" + str(moving_block))
     
+    GAME_WINDOW_WIDTH = self.get_parent().BLOCK_SIZE * self.get_parent().GRID_SIZE_X
+    GAME_WINDOW_HEIGHT = self.get_parent().BLOCK_SIZE * self.get_parent().GRID_SIZE_Y
+    
+    print("GAME_WINDOW_WIDTH=" + str(GAME_WINDOW_WIDTH), ",GAME_WINDOW_HEIGHT=" + str(GAME_WINDOW_HEIGHT))
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
@@ -115,8 +124,15 @@ func _process(delta):
             seek_moving_block += 1
             print("moved_vector=" + str(moved_vector))
             
-            self.move_local_x(moved_vector.x)
-            self.move_local_y(moved_vector.y)
+            if self.position.x + moved_vector.x >= 0 and self.position.x + moved_vector.x < GAME_WINDOW_WIDTH:               
+                self.move_local_x(moved_vector.x)
+            else:
+                print("Gameの箱の左右サイドにぶつかった。" + str(self.position.x + moved_vector.x))
+                
+            if self.position.y + moved_vector.y >= 0 and self.position.y + moved_vector.y < GAME_WINDOW_HEIGHT:                         
+                self.move_local_y(moved_vector.y)
+            else:
+                print("Gameの箱の上下サイドにぶつかった。" + str(self.position.y + moved_vector.y))
         
         else:
             seek_moving_block = 0
