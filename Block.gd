@@ -10,10 +10,6 @@ var timer = 0.0
 
 func _ready():
     random_generator.randomize()
-    var R=KIND%2
-    var G=KIND%3
-    var B=KIND%5
-    modulate = Color(R,G,B)
     
 func _process(delta):
     if victoryblock:
@@ -21,6 +17,11 @@ func _process(delta):
         if timer>0.2:
             timer = 0
             modulate = Color(c(),c(),c())
+    else:
+        var R=KIND%2
+        var G=KIND%3
+        var B=KIND%5
+        modulate = Color(R,G,B)
     if get_parent().Failure_Kind == KIND:
         texture = skull_tex
     else:
