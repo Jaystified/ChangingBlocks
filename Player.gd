@@ -8,7 +8,6 @@ enum  {UP=0, DOWN=1, LEFT=2, RIGHT=3}
 var seek_moving_block = 0
 var moving_block
 
-export var MAX_BLOCK_SIZE=3
 var now_moving_block 
 
 var random_generator = RandomNumberGenerator.new()
@@ -18,38 +17,8 @@ var GAME_WINDOW_HEIGHT
 
 var Grid_Position = Vector2(0,0)
 
-func inverse_arrow(arrow):
-    if arrow == UP:
-        return DOWN
-
-    elif arrow == DOWN:
-        return UP
-
-    elif arrow == LEFT:
-        return RIGHT
-
-    elif arrow == RIGHT:
-        return LEFT
         
             
-
-func random_moving_block(first_arrow, max_block_size):    
-    var block = [first_arrow]
-    var before_arrow = first_arrow
-    for i in range(max_block_size-1):
-        if random_generator.randi_range(0, 1) == 1:
-            # 次に進む
-            while true:
-                var arrow = random_generator.randi_range(0, 3)
-                if arrow != inverse_arrow(first_arrow):
-                    block.append(arrow)
-#                    before_arrow = arrow
-                    break
-                    
-        else:
-            break
-    
-    return block
         
         
 
@@ -105,11 +74,6 @@ func _ready():
 #    RIGHT: [RIGHT]
 #    } 
     random_generator.randomize()
-    moving_block = {}
-    for first_arrow in [UP, DOWN, LEFT, RIGHT]:
-        moving_block[first_arrow] = random_moving_block(first_arrow, MAX_BLOCK_SIZE)
-    
-    print("moving_block=" + str(moving_block))
     
     GAME_WINDOW_WIDTH = self.get_parent().BLOCK_SIZE * self.get_parent().GRID_SIZE_X
     GAME_WINDOW_HEIGHT = self.get_parent().BLOCK_SIZE * self.get_parent().GRID_SIZE_Y

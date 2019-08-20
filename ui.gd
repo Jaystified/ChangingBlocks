@@ -7,6 +7,7 @@ extends Node2D
 enum  {UP=0, DOWN=1, LEFT=2, RIGHT=3}
 var block_size = 32
 
+
 func get_vector_form_array(arrow):
     if arrow == UP:
         return Vector2(0, -1)
@@ -36,8 +37,14 @@ func asign_array_block(first_arrow, moving_block):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    pass
     
-    asign_array_block(RIGHT, [RIGHT,RIGHT,RIGHT])
+func update_ui(moving_blocks):    
+    print(moving_blocks)
+    for first_array in moving_blocks:
+        
+        asign_array_block(first_array, moving_blocks[first_array])
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
