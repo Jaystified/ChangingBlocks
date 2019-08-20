@@ -10,7 +10,7 @@ export var MAX_MOVING_BLOCK_SIZE=3
 var Victory_Block = Vector2(0,0)
 var Failure_Kind = 1
 var Grid = [[]]
-var Points = -1
+var Points = 0
 var moving_blocks = {}
 
 var random_generator = RandomNumberGenerator.new()
@@ -48,9 +48,12 @@ func _ready():
 func _process(delta):
     if !$Player.now_moving_block && $Player.Grid_Position == Victory_Block:
         get_point()
+        
     if !$Player.now_moving_block && Grid[$Player.Grid_Position.x][$Player.Grid_Position.y].KIND == Failure_Kind:
         Points = -1
         death()
+    
+    $ui.update_point(Points)
     pass
 
 func get_point():

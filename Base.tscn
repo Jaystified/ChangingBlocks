@@ -11,14 +11,15 @@ script = ExtResource( 1 )
 
 [node name="ui" parent="." instance=ExtResource( 2 )]
 
-[node name="Label" type="Label" parent="ui"]
+[node name="point" type="Label" parent="ui"]
 margin_left = -16.0
-margin_top = 192.0
+margin_top = 176.0
 margin_right = 24.0
-margin_bottom = 206.0
+margin_bottom = 190.0
+rect_scale = Vector2( 3, 3 )
 
-[node name="star" type="Sprite" parent="ui/Label"]
-position = Vector2( -32, 0 )
+[node name="star" type="Sprite" parent="ui"]
+position = Vector2( -48, 192 )
 texture = ExtResource( 3 )
 
 [node name="Player" type="Sprite" parent="."]

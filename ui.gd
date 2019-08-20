@@ -93,6 +93,9 @@ func update_ui(moving_blocks):
         asign_array_block(first_arrow, moving_blocks[first_arrow])
 
 
+func update_point(point):
+    $point.set_text(str(point))
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
