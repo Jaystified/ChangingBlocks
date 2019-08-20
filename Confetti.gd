@@ -4,6 +4,7 @@ export var TTL = 2
 var timer = 0
 
 func _ready():
+    $aud.play(0.5)
     pass # Replace with function body.
 
 func _process(delta):
