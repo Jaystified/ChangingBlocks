@@ -33,7 +33,7 @@ func get_arrow_texture(arrow):
 
 func remove_arrow_block():
     for node in get_children():
-        if node.name != "left-arrow" && node.name != "right-arrow" && node.name != "up-arrow" && node.name != "down-arrow":
+        if node.name != "left-arrow" && node.name != "right-arrow" && node.name != "up-arrow" && node.name != "down-arrow" && node.name != "point" && node.name != "star":
             node.queue_free()
 
     
@@ -75,6 +75,9 @@ func update_ui(moving_blocks):
         asign_array_block(first_arrow, moving_blocks[first_arrow])
 
 
+func update_point(point):
+    $point.set_text(str(point))
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
