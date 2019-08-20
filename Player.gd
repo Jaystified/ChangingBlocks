@@ -16,6 +16,8 @@ var random_generator = RandomNumberGenerator.new()
 var GAME_WINDOW_WIDTH
 var GAME_WINDOW_HEIGHT
 
+var Grid_Position = Vector2(0,0)
+
 func inverse_arrow(arrow):
     if arrow == UP:
         return DOWN
@@ -124,7 +126,8 @@ func _process(delta):
             seek_moving_block += 1
             print("moved_vector=" + str(moved_vector))
             
-            if self.position.x + moved_vector.x >= 0 and self.position.x + moved_vector.x < GAME_WINDOW_WIDTH:               
+            if self.position.x + moved_vector.x >= 0 and self.position.x + moved_vector.x < GAME_WINDOW_WIDTH: 
+                Grid_Position += moved_vector/32              
                 self.move_local_x(moved_vector.x)
             else:
                 print("Gameの箱の左右サイドにぶつかった。" + str(self.position.x + moved_vector.x))
