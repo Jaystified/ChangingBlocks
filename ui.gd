@@ -32,32 +32,15 @@ func get_arrow_texture(arrow):
          return load("res://right-arrow.png") 
 
 func remove_arrow_block():
-    for arrow in range(4):
-        for index in range(10):
-#            var node = find_node("arrow_block_base_" + str(arrow) + "_"+ str(index))
-            var node = find_node("arrow_block_base_*")
-            print("remove node_name=" + "arrow_block_base_" + str(arrow) + "_"+ str(index))
-            print("node=" + str(node))
-            if node != null:
-                node.queue_free()
-#                remove_child(node)
-
-        for index in range(10):
-#            var node = find_node("arrow_block_" + str(arrow) + "_"+ str(index))
-            var node = find_node("arrow_block_*")
-            print("remove node_name=" + "arrow_block_" + str(arrow) + "_"+ str(index))
-            print("node=" + str(node))
-            if node != null:
-                node.queue_free()
-#                remove_child(node)
+    for node in get_children():
+        if node.name != "left-arrow" && node.name != "right-arrow" && node.name != "up-arrow" && node.name != "down-arrow":
+            node.queue_free()
 
     
 
 func asign_array_block(first_arrow, moving_block):
     var block_vector = get_vector_form_array(first_arrow)
     var current_position = block_vector * block_size * 2
-    
-    remove_arrow_block()
     
     var index = 0
     for arrow in moving_block:
@@ -69,7 +52,6 @@ func asign_array_block(first_arrow, moving_block):
         scene_instance.position = current_position
         add_child(scene_instance)
     
-        var arrow_block_scene2 = load("res://array-block.tscn")
         var scene_instance2 = arrow_block_scene.instance()
         var scene_name2 = "arrow_block_"+str(first_arrow)+"_"+str(index)
         scene_instance2.set_name(scene_name2)
@@ -87,8 +69,8 @@ func _ready():
     pass
     
 func update_ui(moving_blocks):    
-
     print(moving_blocks)
+    remove_arrow_block()
     for first_arrow in moving_blocks:
         asign_array_block(first_arrow, moving_blocks[first_arrow])
 
