@@ -18,9 +18,25 @@ func _process(delta):
             timer = 0
             modulate = Color(c(),c(),c())
     else:
-        var R=KIND%2
-        var G=KIND%3
-        var B=KIND%5
+        var R=1.0/(KIND%2+1)
+        var G=1.0/(KIND%3+1)
+        var B=1.0/(KIND%5+1)
+        if(KIND==1):
+            R=0.8
+            G=0.2
+            B=0.2
+        elif(KIND==2):
+            R=0.2
+            G=0.8
+            B=0.2
+        elif(KIND==3):
+            R=0.2
+            G=0.2
+            B=0.8
+        elif(KIND==4):
+            R=0.8
+            G=0.2
+            B=0.8 
         modulate = Color(R,G,B)
     if get_parent().Failure_Kind == KIND:
         texture = skull_tex

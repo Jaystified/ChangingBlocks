@@ -15,6 +15,7 @@ var moving_blocks = {}
 
 var random_generator = RandomNumberGenerator.new()
 var block = load("res://Block.tscn")
+var confetti = load("res://Confetti.tscn")
 
 enum  {UP=0, DOWN=1, LEFT=2, RIGHT=3}
 
@@ -53,12 +54,14 @@ func _process(delta):
     pass
 
 func get_point():
-    print("Win!")
+    var particle_target = $Player.position+Vector2(BLOCK_SIZE/2,BLOCK_SIZE/2)
+    var Confetti_instance = confetti.instance()
+    Confetti_instance.position = particle_target
+    add_child(Confetti_instance)
     Points += 1
     generate()
 
 func death():
-    print("Dath!")
     print($Player.Grid_Position)
     print(Grid[$Player.Grid_Position.x][$Player.Grid_Position.y].KIND)
     print(Failure_Kind)
