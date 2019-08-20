@@ -127,16 +127,17 @@ func _process(delta):
             print("moved_vector=" + str(moved_vector))
             
             if self.position.x + moved_vector.x >= 0 and self.position.x + moved_vector.x < GAME_WINDOW_WIDTH: 
-                Grid_Position += moved_vector/32              
+                Grid_Position.x += moved_vector.x/32           
                 self.move_local_x(moved_vector.x)
             else:
                 print("Gameの箱の左右サイドにぶつかった。" + str(self.position.x + moved_vector.x))
                 
-            if self.position.y + moved_vector.y >= 0 and self.position.y + moved_vector.y < GAME_WINDOW_HEIGHT:                         
+            if self.position.y + moved_vector.y >= 0 and self.position.y + moved_vector.y < GAME_WINDOW_HEIGHT: 
+                Grid_Position.y += moved_vector.y/32                     
                 self.move_local_y(moved_vector.y)
             else:
                 print("Gameの箱の上下サイドにぶつかった。" + str(self.position.y + moved_vector.y))
-        
+            print("Grid:"+str(Grid_Position))
         else:
             seek_moving_block = 0
             now_moving_block = null
