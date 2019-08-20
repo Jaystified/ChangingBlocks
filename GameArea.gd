@@ -14,6 +14,8 @@ var random_generator = RandomNumberGenerator.new()
 var block = load("res://Block.tscn")
 
 func _ready():
+    $ui.position = Vector2(1200,200)
+    
     var i = 0
     var j = 0
     random_generator.randomize()

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://block.png" type="Texture" id=1]
+[ext_resource path="res://array-block.gd" type="Script" id=2]
+
+[node name="Sprite" type="Sprite"]
+modulate = Color( 0.486275, 0.423529, 0.423529, 1 )
+z_index = 1
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
