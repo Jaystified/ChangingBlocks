@@ -33,7 +33,7 @@ func get_arrow_texture(arrow):
 
 func remove_arrow_block():
     for node in get_children():
-        if node.name != "left-arrow" && node.name != "right-arrow" && node.name != "up-arrow" && node.name != "down-arrow" && node.name != "point" && node.name != "star":
+        if node.name != "left-arrow" && node.name != "base" && node.name != "right-arrow" && node.name != "up-arrow" && node.name != "down-arrow" && node.name != "point" && node.name != "star":
             node.queue_free()
 
     
@@ -66,6 +66,7 @@ func asign_array_block(first_arrow, moving_block):
         
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    block_size = get_parent().BLOCK_SIZE
     pass
     
 func update_ui(moving_blocks):    

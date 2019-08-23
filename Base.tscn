@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GameArea.gd" type="Script" id=1]
 [ext_resource path="res://ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://star.png" type="Texture" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Player.gd" type="Script" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,8 +29,13 @@ rect_scale = Vector2( 3, 3 )
 position = Vector2( -48, 192 )
 texture = ExtResource( 3 )
 
+[node name="base" type="Sprite" parent="ui"]
+scale = Vector2( 3, 3 )
+texture = SubResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
 [node name="Player" type="Sprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
 z_index = 1
 texture = ExtResource( 4 )
 centered = false

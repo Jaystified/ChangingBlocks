@@ -20,7 +20,7 @@ var confetti = load("res://Confetti.tscn")
 enum  {UP=0, DOWN=1, LEFT=2, RIGHT=3}
 
 func _ready():
-    $ui.position = Vector2(GRID_SIZE_X*BLOCK_SIZE+8*BLOCK_SIZE,8*BLOCK_SIZE)
+    $ui.position = Vector2(GRID_SIZE_X*BLOCK_SIZE+5*BLOCK_SIZE,5*BLOCK_SIZE)
     
     var i = 0
     var j = 0
